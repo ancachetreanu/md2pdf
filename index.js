@@ -4,7 +4,7 @@ const mdToPdf = require('md-to-pdf');
 const projectsFile = 'config.json';
 
 const args = process.argv;
-const fileName = args.[2];
+const fileName = args[2];
 
     try {
         (async () => {
