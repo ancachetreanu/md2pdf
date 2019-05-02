@@ -13,8 +13,8 @@ const fileName = args[2];
             var text = data.toString().replace(/\r/g, '');
             let lines = text.split("\n");
             let allText = lines.map(line => fs.readFileSync(`${__dirname}/docs/` + line + ".md", { encoding: 'utf8' }));
-            fs.writeFileSync(`${fileName}.md`, allText.join(''));
-            await mdToPdf(`${fileName}.md`, { dest: `${__dirname}/output/${fileName}.pdf`}).catch(console.error);
+            fs.writeFileSync(`${__dirname}/docs/${fileName}.md`, allText.join(''));
+            await mdToPdf(`${__dirname}/docs/${fileName}.md`, { dest: `${__dirname}/output/${fileName}.pdf`}).catch(console.error);
         })();
     }
     catch (error) {
