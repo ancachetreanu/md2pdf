@@ -4,6 +4,7 @@ const toc = require('markdown-toc');
 
 const args = process.argv;
 const fileName = args[2];
+const maxIndexDepth = args[3];
 
 try {
     (async () => {
@@ -14,7 +15,7 @@ try {
         let allText = lines.map(line => fs.readFileSync(`${__dirname}/docs/` + line + ".md", { encoding: 'utf8' }));
         fs.writeFileSync(`${__dirname}/docs/${fileName}.md`, allText.join(''));
 
-        let result =`\n# Índice\n` + toc(allText.toString(), {maxdepth: 3, bullets: `-`}).content + `\n<div class="page-break"></div>\n`;        
+        let result =`\n# Índice\n` + toc(allText.toString(), {maxdepth: `${maxIndexDepth}`, bullets: `-`}).content + `\n<div class="page-break"></div>\n`;        
         fs.writeFileSync(`${__dirname}/docs/Index.md`,result);
 
         console.log(`Processing document: ${fileName}`);
