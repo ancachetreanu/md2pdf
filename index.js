@@ -14,15 +14,17 @@ try {
         let allText = lines.map(line => fs.readFileSync(`${__dirname}/docs/` + line + ".md", { encoding: 'utf8' }));
         fs.writeFileSync(`${__dirname}/docs/${fileName}.md`, allText.join(''));
 
-        let result =`\n# Índice\n` + toc(allText.toString()).content + `\n<div class="page-break"></div>\n`;        
+        let result =`\n# Índice\n` + toc(allText.toString(), {maxdepth: 3, bullets: `-`}).content + `\n<div class="page-break"></div>\n`;        
         fs.writeFileSync(`${__dirname}/docs/Index.md`,result);
 
+        console.log(`Processing document: ${fileName}`);
         lines.splice(2,0,`Index`);
         let finalDoc = lines.map(line => fs.readFileSync(`${__dirname}/docs/` + line + ".md", { encoding: 'utf8' }));
         fs.writeFileSync(`${__dirname}/docs/${fileName}.md`, finalDoc.join(''));
 
-
         await mdToPdf(`${__dirname}/docs/${fileName}.md`, { dest: `${__dirname}/output/${fileName}.pdf` }).catch(console.error);
+
+        console.log(`Finish process`);
     })();
 }
 catch (error) {
