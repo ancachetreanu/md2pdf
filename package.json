@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "fs": "0.0.1-security",
-    "md-to-pdf": "^2.6.4"
+    "markdown-toc": "^1.2.0",
+    "md-to-pdf": "^2.7.0"
   }
 }
